@@ -43,6 +43,12 @@ updateReclamation(id: number, reclamation: Reclamation): Observable<Reclamation>
   return this.http.put<Reclamation>(url, reclamation);
 }
 
+sendResponse(id: number, reclamation: Reclamation): Observable<Reclamation> {
+  const url = `${this.apiUrl}/status/${id}`;
+  return this.http.put<Reclamation>(url, reclamation);
+}
+
+
 getAllForumsWithUserInfo(): Observable<ReclamationWithUserDto[]> {
   return this.http.get<ReclamationWithUserDto[]>(`${this.apiUrl}/allInfos`);
 }

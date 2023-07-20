@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from '../services/comment.service';
 import { ClaimServiceService } from '../services/claim-service.service';
 import { ReclamationWithUserDto } from '../models/reclamationWithUserDto';
+import { Reclamation } from '../models/reclamation';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-claim-details',
@@ -20,22 +22,35 @@ export class ClaimDetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private postService: PostService,
-    private commentService : CommentService,
     private reclamationService : ClaimServiceService
   ) {} 
 
-  forum : ReclamationWithUserDto = {
-    description: '',
-    status: '',
+  reclamation: Reclamation = {
     response: '',
-    title: '',
-    dateRec: '',// Consider changing to a Date type if needed
-    user: {
-      username: '',
-      email: ''
+    description: '' // If needed, provide a default value for status
+  };
 
-    }
+  onSubmit(reclamationForm: NgForm) {
+    // Check if the form is valid
+      // Update the reclamation object with the values from the form
+      this.reclamation.response = reclamationForm.value.response;
+
+      if (this.postId) {
+        this.reclamationService.sendResponse(this.postId, this.reclamation).subscribe(
+          (response) => {
+            // Handle the successful response, e.g., show a success message
+            console.log('Reclamation updated:', response);
+            this.router.navigate(['/allClaims']);
+
+          },
+          (error) => {
+            // Handle the error response, e.g., show an error message
+            console.error('Error updating reclamation:', error);
+          }
+        );
+      }
+    
+
   }
 
   ngOnInit(): void {
