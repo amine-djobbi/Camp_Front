@@ -15,6 +15,7 @@ import { ClaimsListComponent } from './claims-list/claims-list.component';
 import { UpdateClaimComponent } from './update-claim/update-claim.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PostListComponent } from './post-list/post-list.component';
     ClaimsListComponent,
     UpdateClaimComponent,
     AddPostComponent,
-    PostListComponent
+    PostListComponent,
+    PostDetailsComponent
     ],
   imports: [
     BrowserModule,

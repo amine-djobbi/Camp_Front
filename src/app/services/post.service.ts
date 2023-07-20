@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Forum } from '../models/forum';
+import { ForumWithUserDTO } from '../models/forumWithUserDto';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,16 @@ export class PostService {
   createForum(userId: any,forum: Forum): Observable<Forum> {
     return this.http.post<Forum>(`${this.apiUrl}/add/${userId}`, forum);
   }
+
+  getAllForumsWithUserInfo(): Observable<ForumWithUserDTO[]> {
+    return this.http.get<ForumWithUserDTO[]>(`${this.apiUrl}/getForums`);
+  }
+
+  getForumInfoById(id: number): Observable<ForumWithUserDTO> {
+    const url = `${this.apiUrl}/getForumWithUserById/${id}`;
+    return this.http.get<ForumWithUserDTO>(url);
+  }
+
 
  
 }

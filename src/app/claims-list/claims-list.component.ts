@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
 export class ClaimsListComponent implements OnInit {
   reclamations: Reclamation[] = [];
 
-  constructor(private reclamationService: ClaimServiceService,    private router: Router,
-    ) {
+  constructor(private reclamationService: ClaimServiceService) {
     
    }
 

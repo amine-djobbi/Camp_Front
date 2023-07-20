@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms'; // Import NgForm
 import { PostService } from '../services/post.service';
 @Component({
@@ -19,7 +19,7 @@ export class AddPostComponent implements OnInit{
     this.authUser = authUserJson ? JSON.parse(authUserJson) : null;
   }
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService,private router: Router) { }
 
   onSubmit(postForm: NgForm) {
 
@@ -38,6 +38,8 @@ export class AddPostComponent implements OnInit{
       response => {
         // Gérer la réponse du serveur si nécessaire
         console.log('Post created:', response);
+        this.router.navigate(['/postlist']);
+
         postForm.resetForm();
       },
       error => {

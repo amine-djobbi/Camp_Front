@@ -10,6 +10,8 @@ import { ClaimsListComponent } from './claims-list/claims-list.component';
 import { UpdateClaimComponent } from './update-claim/update-claim.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
+
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   //{path: '', component: SideBarComponent},
@@ -20,7 +22,9 @@ const routes: Routes = [
   {path:'myclaims',component: ClaimsListComponent},
   {path:'update-claim/:id',component: UpdateClaimComponent},
   {path:'addpost',component: AddPostComponent},
-  {path:'postlist',component: PostListComponent}
+  {path:'postlist',component: PostListComponent},
+  {path:'postdetails/:id',component: PostDetailsComponent},
+
 
 
 
