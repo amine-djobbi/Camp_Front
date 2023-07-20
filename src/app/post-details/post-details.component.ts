@@ -28,6 +28,8 @@ export class PostDetailsComponent implements OnInit{
     }
   }
 
+  badWord : boolean = false;
+
   comment: AppComment = {
     content: '',
   };
@@ -99,6 +101,7 @@ export class PostDetailsComponent implements OnInit{
     }
   }
   onSubmit(commentForm: NgForm) {
+    this.badWord = false; // Set the error flag to true
 
     if (!this.authUser || !this.authUser.id) {
       console.error('User ID not found in sessionStorage');
@@ -119,7 +122,7 @@ export class PostDetailsComponent implements OnInit{
         commentForm.resetForm();
       },
       error => {
-        // Gérer les erreurs s'il y en a
+        this.badWord = true; // Set the error flag to true
         console.error('Error creating post:', error);
       }
     );

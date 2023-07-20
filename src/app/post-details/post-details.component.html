@@ -73,6 +73,9 @@
               <input name="content"  ngModel type="subject" class="form-control" placeholder="Comment..." aria-label="Content" aria-describedby="email-addon">
             </div>
           </div>
+          <div class="text-center mt-2" *ngIf="badWord">
+            <p class="text-danger">Bad Word</p>
+          </div>
           <div class="row">
             <div class="col-2 mb-2">
               <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Add Comment</button>
