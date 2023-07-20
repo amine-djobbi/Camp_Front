@@ -2,14 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../services/post.service';
 import { ForumWithUserDTO } from '../models/forumWithUserDto';
+import { CommentService } from '../services/comment.service';
+import { NgForm } from '@angular/forms'; // Import NgForm
+import { AppComment } from '../models/comment';
+import { CommentWithUserDto } from '../models/commentWithUserDto';
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html',
   styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent implements OnInit{
-  authUser: any; // Declare authUser as a class property
+  comments: CommentWithUserDto[] = [];
 
+  authUser: any; // Declare authUser as a class property
   postId!: number;
   forum : ForumWithUserDTO = {
     question: '',
@@ -23,16 +28,21 @@ export class PostDetailsComponent implements OnInit{
     }
   }
 
+  comment: AppComment = {
+    content: '',
+  };
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private postService: PostService
+    private postService: PostService,
+    private commentService : CommentService
   ) {} 
   
   ngOnInit(): void {
     // Get the reclamation id from the route parameters
     const id = this.route.snapshot.params['id']; // Use index signature to access 'id'
-
+    this.postId = id;
     // Retrieve the reclamation data based on the id
     this.postService.getForumInfoById(id).subscribe(
       (forum) => {
@@ -46,6 +56,18 @@ export class PostDetailsComponent implements OnInit{
 
     const authUserJson = sessionStorage.getItem('user');
     this.authUser = authUserJson ? JSON.parse(authUserJson) : null;
+
+    if (this.authUser && this.authUser.id) {
+      // Get comments by form ID
+      this.commentService.getComByFormId(this.postId).subscribe(
+        (comments) => {
+          this.comments = comments;
+        },
+        (error) => {
+          console.error('Error fetching reclamations:', error);
+        }
+      );
+    }
 
   }
 
@@ -61,7 +83,34 @@ export class PostDetailsComponent implements OnInit{
       );
     }
   }
+  onSubmit(commentForm: NgForm) {
 
+    if (!this.authUser || !this.authUser.id) {
+      console.error('User ID not found in sessionStorage');
+      return;
+    }
+
+    const commentData = {
+      content: commentForm.value.content,
+    };
+  
+    this.commentService.createComment(commentData, this.postId, this.authUser.id).subscribe(
+      response => {
+        // Gérer la réponse du serveur si nécessaire
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/postdetails', this.postId]);
+        });
+    
+        commentForm.resetForm();
+      },
+      error => {
+        // Gérer les erreurs s'il y en a
+        console.error('Error creating post:', error);
+      }
+    );
+  }
+
+  
 
 
 }
