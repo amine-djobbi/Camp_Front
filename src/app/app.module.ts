@@ -13,6 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { AddClaimComponent } from './add-claim/add-claim.component';
 import { ClaimsListComponent } from './claims-list/claims-list.component';
 import { UpdateClaimComponent } from './update-claim/update-claim.component';
+import { AddPostComponent } from './add-post/add-post.component';
+import { PostListComponent } from './post-list/post-list.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,10 @@ import { UpdateClaimComponent } from './update-claim/update-claim.component';
     RegisterComponent,
     AddClaimComponent,
     ClaimsListComponent,
-    UpdateClaimComponent
-  ],
+    UpdateClaimComponent,
+    AddPostComponent,
+    PostListComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
