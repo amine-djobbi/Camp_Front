@@ -4,6 +4,7 @@ export interface Activite {
     description: string;
     duree:string;
     capaciteMax:number;
+    centreId?: number;
 }
    
    

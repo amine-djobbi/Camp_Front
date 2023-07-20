@@ -24,6 +24,8 @@ import { ClaimDetailsComponent } from './claim-details/claim-details.component';
 import { AllClaimsComponent } from './all-claims/all-claims.component';
 import { ActiviteCentreComponent } from './activite-centre/activite-centre.component';
 import { VerifyComponent } from './verify/verify.component';
+import { AddActiviteComponent } from './add-activite/add-activite.component';
+import { UpdateactivityComponent } from './updateactivity/updateactivity.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { VerifyComponent } from './verify/verify.component';
     ClaimDetailsComponent,
     AllClaimsComponent,
     ActiviteCentreComponent,
-    VerifyComponent
+    VerifyComponent,
+    AddActiviteComponent,
+    UpdateactivityComponent
     ],
   imports: [
     BrowserModule,

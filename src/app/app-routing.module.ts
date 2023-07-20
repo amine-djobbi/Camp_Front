@@ -19,6 +19,8 @@ import { AllClaimsComponent } from './all-claims/all-claims.component';
 import { ClaimDetailsComponent } from './claim-details/claim-details.component';
 import { ActiviteCentreComponent } from './activite-centre/activite-centre.component';
 import { VerifyComponent } from './verify/verify.component';
+import { AddActiviteComponent } from './add-activite/add-activite.component';
+import { UpdateactivityComponent } from './updateactivity/updateactivity.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   //{path: '', component: SideBarComponent},
@@ -39,7 +41,10 @@ const routes: Routes = [
   {path:'claimDetails/:id',component: ClaimDetailsComponent},
   {path:'centre-activites/:id',component: ActiviteCentreComponent},
   {path:'verify',component: VerifyComponent},
-
+  {path:'addactivity',component: AddActiviteComponent},
+  {path:'updateActivity/:id',component:UpdateactivityComponent},
+  
+  
 
 
 

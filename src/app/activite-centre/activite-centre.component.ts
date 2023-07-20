@@ -1,40 +1,41 @@
-import { Component,OnInit  } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component,OnInit  } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Activite } from '../models/activite';
 import { ActiviteService } from '../services/activite.service';
 
 @Component({
-  selector: 'app-activite-centre',
-  templateUrl: './activite-centre.component.html',
-  styleUrls: ['./activite-centre.component.css']
+  selector: 'app-activite-centre',
+  templateUrl: './activite-centre.component.html',
+  styleUrls: ['./activite-centre.component.css']
 })
 export class ActiviteCentreComponent {
-  centreId!: number;
-  activities: Activite[] = [];
+  centreId!: number;
+  activities: Activite[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private activiteService: ActiviteService
-  ) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router:Router,
+    private activiteService: ActiviteService
+  ) {}
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      //this.centreId = +params['centreId']; // Assuming the route parameter is named 'centreId'
-      const id = this.route.snapshot.params['id']; // Use index signature to access 'id'
-    this.centreId = id;
-      this.loadActivities();
-    });
-  }
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      //this.centreId = +params['centreId']; // Assuming the route parameter is named 'centreId'
+      const id = this.route.snapshot.params['id']; // Use index signature to access 'id'
+      this.centreId = id;
+      this.loadActivities();
+    });
+  }
 
-  loadActivities(): void {
-    this.activiteService
-      .getAllActivitesByCentre(this.centreId)
-      .subscribe((activities) => {
-        this.activities = activities;
-      });
-  }
+  loadActivities(): void {
+    this.activiteService
+      .getAllActivitesByCentre(this.centreId)
+      .subscribe((activities) => {
+        this.activities = activities;
+      });
+  }
 
-  onDeleteActivity(id?: number) {
+  onDeleteActivity(id?: number) {
     if (id) {
       this.activiteService.deleteActivity(id).subscribe(
         () => {
@@ -48,4 +49,14 @@ export class ActiviteCentreComponent {
     }
   }
 
+
+goToAddClaimWithCentreId(): void {
+  if (this.centreId) {
+    this.router.navigate(['/addactivity'], { queryParams: { centreId: this.centreId } });
+  } else {
+    console.error('Centre ID not found.');
+  }
 }
+
+}
+
