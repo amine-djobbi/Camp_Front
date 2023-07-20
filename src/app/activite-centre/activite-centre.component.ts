@@ -19,13 +19,13 @@ export class ActiviteCentreComponent {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      //this.centreId = +params['centreId']; // Assuming the route parameter is named 'centreId'
-      const id = this.route.snapshot.params['id']; // Use index signature to access 'id'
-      this.centreId = id;
-      this.loadActivities();
-    });
-  }
+this.route.params.subscribe((params) => {
+const id = this.route.snapshot.params['id']; // Use index signature to access 'id'
+this.centreId = id;
+console.log(id)
+ this.loadActivities();
+});
+}
 
   loadActivities(): void {
     this.activiteService
@@ -52,7 +52,7 @@ export class ActiviteCentreComponent {
 
 goToAddClaimWithCentreId(): void {
   if (this.centreId) {
-    this.router.navigate(['/addactivity'], { queryParams: { centreId: this.centreId } });
+    this.router.navigate(['/addactivity', this.centreId]);
   } else {
     console.error('Centre ID not found.');
   }

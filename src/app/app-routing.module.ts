@@ -41,7 +41,7 @@ const routes: Routes = [
   {path:'claimDetails/:id',component: ClaimDetailsComponent},
   {path:'centre-activites/:id',component: ActiviteCentreComponent},
   {path:'verify',component: VerifyComponent},
-  {path:'addactivity',component: AddActiviteComponent},
+  {path:'addactivity/:id',component: AddActiviteComponent},
   {path:'updateActivity/:id',component:UpdateactivityComponent},
   
   

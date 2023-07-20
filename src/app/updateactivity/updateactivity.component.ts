@@ -56,6 +56,7 @@ export class UpdateactivityComponent {
                   // Handle the successful response, e.g., show a success message
                   console.log('Centre updated:', response);
                   this.router.navigate(['/centres']);
+
       
                 },
                 (error) => {

@@ -19,11 +19,12 @@ export class AddActiviteComponent {
 
   ngOnInit(): void {
     // Retrieve the centreId from the route query parameters
-    this.route.queryParams.subscribe((params) => {
-      const id = this.route.snapshot.params['id']; // Use index signature to access 'id'
-      this.centreId = id;    });
-  }
-
+this.route.params.subscribe((params) => {
+  const id = this.route.snapshot.params['id']; // Use index signature to access 'id'
+  this.centreId = id;
+  console.log(id)
+  });
+}
   onSubmit(activityForm: NgForm) {
     if (!this.centreId) {
       console.error('Centre ID not found in query parametersxxx.');
@@ -42,7 +43,7 @@ export class AddActiviteComponent {
       (response) => {
         console.log('Activity created:', response);
         // Redirect to the details page of the newly created activity
-        this.router.navigate(['/activity-details', response.id]);
+        this.router.navigate(['/centre-activites', this.centreId  ]);
       },
       (error) => {
         console.error('Error creating Activity:', error);
