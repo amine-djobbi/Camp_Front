@@ -8,6 +8,8 @@ import { ForumWithUserDTO } from '../models/forumWithUserDto';
   styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent implements OnInit{
+  authUser: any; // Declare authUser as a class property
+
   postId!: number;
   forum : ForumWithUserDTO = {
     question: '',
@@ -41,7 +43,25 @@ export class PostDetailsComponent implements OnInit{
         console.error('Error fetching reclamation:', error);
       }
     );
+
+    const authUserJson = sessionStorage.getItem('user');
+    this.authUser = authUserJson ? JSON.parse(authUserJson) : null;
+
   }
+
+  onDeleteForm(id?: number) {
+    if (id) {
+      this.postService.deleteForum(id).subscribe(
+        () => {
+          this.router.navigate(['/postlist']);
+        },
+        (error) => {
+          console.error('Error deleting reclamation:', error);
+        }
+      );
+    }
+  }
+
 
 
 }

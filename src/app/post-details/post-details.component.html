@@ -23,9 +23,9 @@
 
         </div>
         
-        <div class="ms-auto text-end">
+        <div class="ms-auto text-end" *ngIf="authUser && authUser.id === forum.user.id">
             <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;" [routerLink]="['/postdetails', forum.idForum]"> UPDATE</a>
-            <a class="btn btn-link text-danger px-3 mb-0" href="javascript:;" [routerLink]="['/postdetails', forum.idForum]"> DELETE</a>
+            <a class="btn btn-link text-danger px-3 mb-0" href="javascript:;" (click)="onDeleteForm(forum.idForum)" > DELETE</a>
 
         </div>
     
@@ -35,7 +35,7 @@
     <div class="card-body">
         <form role="form text-left">
           <div class="row">
-            <div class="col-6 mb-2">
+            <div class="col-6 mb-0">
               <input type="text" class="form-control" placeholder="Comment" aria-label="Name" aria-describedby="email-addon">
             </div>  
           </div>

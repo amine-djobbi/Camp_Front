@@ -26,6 +26,12 @@ export class PostService {
     return this.http.get<ForumWithUserDTO>(url);
   }
 
+  deleteForum(id: number): Observable<void> {
+    const url = `${this.apiUrl}/deleteForum/${id}`;
+    return this.http.delete<void>(url);
+  }
+  
+
 
  
 }
