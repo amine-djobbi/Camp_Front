@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Forum } from '../models/forum';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-update-post',
@@ -37,6 +38,31 @@ export class UpdatePostComponent implements OnInit{
       }
     );
   }
+
+  onSubmit(reclamationForm: NgForm) {
+    // Check if the form is valid
+      // Update the reclamation object with the values from the form
+      this.forum.title = reclamationForm.value.subject;
+      this.forum.content = reclamationForm.value.content;
+      this.forum.question = reclamationForm.value.question;
+
+      if (this.forum.idForum) {
+        this.postService.updateForum(this.forum.idForum, this.forum).subscribe(
+          (response) => {
+            // Handle the successful response, e.g., show a success message
+            this.router.navigate(['/postlist']);
+
+          },
+          (error) => {
+            // Handle the error response, e.g., show an error message
+            console.error('Error updating reclamation:', error);
+          }
+        );
+      }
+    
+
+  }
+
 
 
 }

@@ -30,6 +30,12 @@ export class PostService {
     const url = `${this.apiUrl}/deleteForum/${id}`;
     return this.http.delete<void>(url);
   }
+
+  updateForum(id: number, forum: Forum): Observable<Forum> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<Forum>(url, forum);
+  }
+  
   
 
 
