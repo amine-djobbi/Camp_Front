@@ -71,6 +71,21 @@ export class PostDetailsComponent implements OnInit{
 
   }
 
+  onDeleteComment(id?: number) {
+    if (id) {
+      this.commentService.deleteCom(id).subscribe(
+        () => {
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/postdetails', this.postId]);
+          });
+          },
+        (error) => {
+          console.error('Error deleting reclamation:', error);
+        }
+      );
+    }
+  }
+
   onDeleteForm(id?: number) {
     if (id) {
       this.postService.deleteForum(id).subscribe(

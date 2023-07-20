@@ -20,6 +20,12 @@ export class CommentService {
     const url = `${this.apiUrl}/forum/${formId}`;
     return this.http.get<CommentWithUserDto[]>(url);
   }
+
+  deleteCom(id: number): Observable<void> {
+    const url = `${this.apiUrl}/delete/${id}`;
+    return this.http.delete<void>(url);
+  }
+
   
 
 }
