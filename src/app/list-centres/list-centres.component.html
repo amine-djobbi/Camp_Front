@@ -6,7 +6,7 @@
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
-          <h6>My Claims</h6>
+          <h6>My Centres de camping</h6>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
@@ -51,6 +51,14 @@
                           <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;" (click)="onDeleteCentre(c.id)">
                           <i class="far fa-trash-alt me-2"></i>
                             </a>
+                            <!-- <button [routerLink]="['/centre-activites', c.id]">view activities</button> -->
+                            <div class="row">
+                              <div class="col-12">
+                                <button class="btn btn-primary mb-2" [routerLink]="['/centre-activites', c.id]">
+                                  Voir Activités
+                                </button>
+                              </div>
+                            </div>
                                               </td>
                   </tr>
                 </tbody>
