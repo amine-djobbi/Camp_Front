@@ -40,8 +40,10 @@ export class ClaimDetailsComponent {
           (response) => {
             // Handle the successful response, e.g., show a success message
             console.log('Reclamation updated:', response);
-            this.router.navigate(['/allClaims']);
-
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate(['/claimDetails', this.postId]);
+            });
+    
           },
           (error) => {
             // Handle the error response, e.g., show an error message
@@ -62,6 +64,7 @@ export class ClaimDetailsComponent {
       (reclamationInfo) => {
         // Assign the retrieved data to the 'reclamation' property
         this.reclamationInfo = reclamationInfo;
+
       },
       (error) => {
         console.error('Error fetching reclamation:', error);
@@ -71,6 +74,20 @@ export class ClaimDetailsComponent {
     const authUserJson = sessionStorage.getItem('user');
     this.authUser = authUserJson ? JSON.parse(authUserJson) : null;
 
+    }
+
+    onDeleteReclamation(id?: number) {
+      if (id) {
+        this.reclamationService.deleteReclamation(id).subscribe(
+          () => {
+            // Successfully deleted, remove the reclamation from the list
+            this.router.navigate(['/allClaims']);
+          },
+          (error) => {
+            console.error('Error deleting reclamation:', error);
+          }
+        );
+      }
     }
 
 }
