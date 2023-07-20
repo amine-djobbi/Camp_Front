@@ -1,0 +1,51 @@
+import { Component,OnInit  } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Activite } from '../models/activite';
+import { ActiviteService } from '../services/activite.service';
+
+@Component({
+  selector: 'app-activite-centre',
+  templateUrl: './activite-centre.component.html',
+  styleUrls: ['./activite-centre.component.css']
+})
+export class ActiviteCentreComponent {
+  centreId!: number;
+  activities: Activite[] = [];
+
+  constructor(
+    private route: ActivatedRoute,
+    private activiteService: ActiviteService
+  ) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      //this.centreId = +params['centreId']; // Assuming the route parameter is named 'centreId'
+      const id = this.route.snapshot.params['id']; // Use index signature to access 'id'
+    this.centreId = id;
+      this.loadActivities();
+    });
+  }
+
+  loadActivities(): void {
+    this.activiteService
+      .getAllActivitesByCentre(this.centreId)
+      .subscribe((activities) => {
+        this.activities = activities;
+      });
+  }
+
+  onDeleteActivity(id?: number) {
+    if (id) {
+      this.activiteService.deleteActivity(id).subscribe(
+        () => {
+          // Successfully deleted, remove the reclamation from the list
+          this.activities = this.activities.filter((act) => act.id !== id);
+        },
+        (error) => {
+          console.error('Error deleting centre:', error);
+        }
+      );
+    }
+  }
+
+}
