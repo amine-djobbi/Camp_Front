@@ -15,6 +15,8 @@ import { DeliveriesComponent } from './deliveries/deliveries.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { AddcentreComponent } from './addcentre/addcentre.component';
 import { UpdatecentreComponent } from './updatecentre/updatecentre.component';
+import { AllClaimsComponent } from './all-claims/all-claims.component';
+import { ClaimDetailsComponent } from './claim-details/claim-details.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   //{path: '', component: SideBarComponent},
@@ -30,8 +32,10 @@ const routes: Routes = [
   {path:'deliveries',component: DeliveriesComponent},
   {path:'update-post/:id',component: UpdatePostComponent},
   {path:'addcentre',component: AddcentreComponent},
-    {path:'update-centre/:id',component: UpdatecentreComponent},
-  
+  {path:'update-centre/:id',component: UpdatecentreComponent},
+  {path:'allClaims',component: AllClaimsComponent},
+  {path:'claimDetails/:id',component: ClaimDetailsComponent},
+
   
 
 

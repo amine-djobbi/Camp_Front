@@ -20,6 +20,8 @@ import { DeliveriesComponent } from './deliveries/deliveries.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { UpdatecentreComponent } from './updatecentre/updatecentre.component';
 import { AddcentreComponent } from './addcentre/addcentre.component';
+import { ClaimDetailsComponent } from './claim-details/claim-details.component';
+import { AllClaimsComponent } from './all-claims/all-claims.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { AddcentreComponent } from './addcentre/addcentre.component';
     DeliveriesComponent,
     UpdatePostComponent,
     UpdatecentreComponent,
-    AddcentreComponent
+    AddcentreComponent,
+    ClaimDetailsComponent,
+    AllClaimsComponent
     ],
   imports: [
     BrowserModule,

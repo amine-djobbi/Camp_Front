@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Reclamation } from '../models/reclamation';
+import { ReclamationWithUserDto } from '../models/reclamationWithUserDto';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,19 @@ getReclamationById(id: number): Observable<Reclamation> {
   return this.http.get<Reclamation>(url);
 }
 
+getReclamationInfoById(id: number): Observable<ReclamationWithUserDto> {
+  const url = `${this.apiUrl}/getInfoById/${id}`;
+  return this.http.get<ReclamationWithUserDto>(url);
+}
+
+
 updateReclamation(id: number, reclamation: Reclamation): Observable<Reclamation> {
   const url = `${this.apiUrl}/${id}`;
   return this.http.put<Reclamation>(url, reclamation);
+}
+
+getAllForumsWithUserInfo(): Observable<ReclamationWithUserDto[]> {
+  return this.http.get<ReclamationWithUserDto[]>(`${this.apiUrl}/allInfos`);
 }
 
 
