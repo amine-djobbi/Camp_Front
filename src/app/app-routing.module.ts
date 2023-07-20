@@ -12,7 +12,9 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { DeliveriesComponent } from './deliveries/deliveries.component';
-
+import { UpdatePostComponent } from './update-post/update-post.component';
+import { AddcentreComponent } from './addcentre/addcentre.component';
+import { UpdatecentreComponent } from './updatecentre/updatecentre.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   //{path: '', component: SideBarComponent},
@@ -26,6 +28,11 @@ const routes: Routes = [
   {path:'postlist',component: PostListComponent},
   {path:'postdetails/:id',component: PostDetailsComponent},
   {path:'deliveries',component: DeliveriesComponent},
+  {path:'update-post/:id',component: UpdatePostComponent},
+  {path:'addcentre',component: AddcentreComponent},
+    {path:'update-centre/:id',component: UpdatecentreComponent},
+  
+  
 
 
 

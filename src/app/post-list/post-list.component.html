@@ -20,10 +20,7 @@
                 <span *ngIf="forum.question" class="mb-2 text-xs">Question<span class="text-dark ms-sm-2 font-weight-bold">{{ forum.question }}</span></span>   
                 <div class="ms-auto text-end">
                     <span class="text-dark ms-sm-2 font-weight-bold"><span class=" text-xs">{{ forum.creationDate }}</span></span>
-
                 </div>
-      
-
               </div>
               
               <div class="ms-auto text-end">
@@ -34,6 +31,10 @@
             
           </ul>
         </div>
+        
       </div>
-    
+      <a href="/addpost">
+        <button type="submit" class="btn bg-gradient-dark w-25 my-4 mb-2">Add Post</button>
+
+      </a>
 </div>

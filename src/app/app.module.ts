@@ -17,6 +17,9 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { DeliveriesComponent } from './deliveries/deliveries.component';
+import { UpdatePostComponent } from './update-post/update-post.component';
+import { UpdatecentreComponent } from './updatecentre/updatecentre.component';
+import { AddcentreComponent } from './addcentre/addcentre.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { DeliveriesComponent } from './deliveries/deliveries.component';
     AddPostComponent,
     PostListComponent,
     PostDetailsComponent,
-    DeliveriesComponent
+    DeliveriesComponent,
+    UpdatePostComponent,
+    UpdatecentreComponent,
+    AddcentreComponent
     ],
   imports: [
     BrowserModule,

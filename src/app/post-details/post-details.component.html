@@ -20,7 +20,7 @@
           </div>
         </div>     
         <div class="ms-auto text-end" *ngIf="authUser && authUser.id === forum.user.id">
-            <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;" [routerLink]="['/postdetails', forum.idForum]"> UPDATE</a>
+            <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"[routerLink]="['/update-post', forum.idForum]"> UPDATE</a>
             <a class="btn btn-link text-danger px-3 mb-0" href="javascript:;" (click)="onDeleteForm(forum.idForum)" > DELETE</a>
 
         </div>
@@ -70,7 +70,7 @@
         <form role="form text-left" (ngSubmit)="onSubmit(commentForm)" #commentForm="ngForm" >
           <div class="row">
             <div class="col-6 mb-0">
-              <input name="content"  ngModel type="subject" class="form-control" placeholder="content" aria-label="Content" aria-describedby="email-addon">
+              <input name="content"  ngModel type="subject" class="form-control" placeholder="Comment..." aria-label="Content" aria-describedby="email-addon">
             </div>
           </div>
           <div class="row">
