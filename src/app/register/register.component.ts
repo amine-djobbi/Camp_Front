@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service'; // Replace '../auth.service' with the correct path to your auth service
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,8 +21,11 @@ export class RegisterComponent {
   successMessage: string = '';
   failedMessage: string = '';
   selectedRoles: any = {}; // Object to hold the selected roles
+  registred:boolean = false;
+  successMessage2: string = '';
+  failedMessage2: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private router: Router) { }
   signUp() {
     const roles: string[] = Object.keys(this.selectedRoles).filter(key => this.selectedRoles[key]);
 
@@ -39,8 +44,11 @@ export class RegisterComponent {
 
     this.authService.registerUser(userData).subscribe(
       (response) => {
+        
         this.successMessage = 'Registration successful!';
-        this.registrationForm.reset(); // Reset the form after successful registration
+        this.registred = true
+        this.router.navigate(['/verify']);
+
         // Clear the selectedRoles object
         Object.keys(this.selectedRoles).forEach(key => this.selectedRoles[key] = false);
  // Set the success message
@@ -54,5 +62,28 @@ export class RegisterComponent {
       }
     );
   }
+
+
+  onSubmit(verifyForm: NgForm) {
+
+
+    const verifReq = {
+      token: verifyForm.value.token,
+    };
+  
+    this.authService.verifyAccount(verifReq.token).subscribe(
+      response => {
+        this.failedMessage2 = '';
+
+        this.successMessage2 = 'Verification successful!';
+        verifyForm.reset();
+      },
+      error => {
+        this.failedMessage2 = 'Verification failed!';
+
+      }
+    );
+  }
+
 }
 

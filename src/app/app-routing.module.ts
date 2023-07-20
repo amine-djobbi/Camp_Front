@@ -18,6 +18,7 @@ import { UpdatecentreComponent } from './updatecentre/updatecentre.component';
 import { AllClaimsComponent } from './all-claims/all-claims.component';
 import { ClaimDetailsComponent } from './claim-details/claim-details.component';
 import { ActiviteCentreComponent } from './activite-centre/activite-centre.component';
+import { VerifyComponent } from './verify/verify.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   //{path: '', component: SideBarComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path:'allClaims',component: AllClaimsComponent},
   {path:'claimDetails/:id',component: ClaimDetailsComponent},
   {path:'centre-activites/:id',component: ActiviteCentreComponent},
+  {path:'verify',component: VerifyComponent},
 
 
 

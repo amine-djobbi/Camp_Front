@@ -19,4 +19,10 @@ export class AuthService {
   registerUser(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/createuser`, userData);
   }
+
+  verifyAccount(token: string): Observable<any> {
+    const loginRequest = { token: token };
+    return this.http.post(`${this.apiUrl}/verify`, loginRequest);
+  }
+
 }

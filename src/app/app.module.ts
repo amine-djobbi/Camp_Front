@@ -23,6 +23,7 @@ import { AddcentreComponent } from './addcentre/addcentre.component';
 import { ClaimDetailsComponent } from './claim-details/claim-details.component';
 import { AllClaimsComponent } from './all-claims/all-claims.component';
 import { ActiviteCentreComponent } from './activite-centre/activite-centre.component';
+import { VerifyComponent } from './verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ActiviteCentreComponent } from './activite-centre/activite-centre.compo
     AddcentreComponent,
     ClaimDetailsComponent,
     AllClaimsComponent,
-    ActiviteCentreComponent
+    ActiviteCentreComponent,
+    VerifyComponent
     ],
   imports: [
     BrowserModule,
