@@ -11,7 +11,7 @@ export class AddClaimComponent implements OnInit {
 
   constructor(private reclamationService: ClaimServiceService) { }
   authUser: any; // Declare authUser as a class property
-
+  badWord : boolean = false;
   ngOnInit() {
     // Retrieve the userId from sessionStorage when the component is initialized
     const authUserJson = sessionStorage.getItem('user');
@@ -21,7 +21,7 @@ export class AddClaimComponent implements OnInit {
 
 
   onSubmit(reclamationForm: NgForm) {
-
+    this.badWord = false;
     if (!this.authUser || !this.authUser.id) {
       console.error('User ID not found in sessionStorage');
       return;
@@ -38,7 +38,7 @@ export class AddClaimComponent implements OnInit {
         reclamationForm.resetForm(); // Use the resetForm() method to reset the form
       },
       (error) => {
-        // Handle the error response, e.g., show an error message
+        this.badWord = true; // Set the error flag to true
         console.error('Error creating reclamation:', error);
       }
     );

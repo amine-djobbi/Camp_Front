@@ -24,7 +24,7 @@ export class LoginComponent {
       (response) => {
         if (response.status !== 204 ) {
           sessionStorage.setItem('user', JSON.stringify(response));
-          this.router.navigate(['/centres']);
+          this.router.navigate(['/postlist']);
         }
         // Handle successful login response here
         

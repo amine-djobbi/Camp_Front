@@ -9,16 +9,18 @@ import { Router } from '@angular/router';
 export class SideBarComponent implements OnInit{
   constructor(private router: Router) {}
   authUser: any; // Declare authUser as a class property
-  authUserRole: { roles: string[] } = { roles: [] };
+  userRole!: string;
 
   ngOnInit() {
     // Retrieve the userId from sessionStorage when the component is initialized
     const authUserJson = sessionStorage.getItem('user');
     this.authUser = authUserJson ? JSON.parse(authUserJson) : null;
-    this.authUserRole.roles = this.authUser.roles;
+    this.userRole = this.authUser.roles[0];
 
     console.log(this.authUser.roles[0])
   }
+
+  
   logout() {
     // Clear the session storage
     sessionStorage.clear();

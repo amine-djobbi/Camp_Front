@@ -6,6 +6,7 @@ import { CommentService } from '../services/comment.service';
 import { NgForm } from '@angular/forms'; // Import NgForm
 import { AppComment } from '../models/comment';
 import { CommentWithUserDto } from '../models/commentWithUserDto';
+import { InteractionService } from '../interaction.service';
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html',
@@ -13,7 +14,7 @@ import { CommentWithUserDto } from '../models/commentWithUserDto';
 })
 export class PostDetailsComponent implements OnInit{
   comments: CommentWithUserDto[] = [];
-
+  interaction : any = '';
   authUser: any; // Declare authUser as a class property
   postId!: number;
   forum : ForumWithUserDTO = {
@@ -38,7 +39,9 @@ export class PostDetailsComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private postService: PostService,
-    private commentService : CommentService
+    private commentService : CommentService,
+    private interactionService : InteractionService
+
   ) {} 
   
   ngOnInit(): void {
@@ -56,6 +59,7 @@ export class PostDetailsComponent implements OnInit{
       }
     );
 
+
     const authUserJson = sessionStorage.getItem('user');
     this.authUser = authUserJson ? JSON.parse(authUserJson) : null;
 
@@ -71,7 +75,47 @@ export class PostDetailsComponent implements OnInit{
       );
     }
 
+    this.interactionService.getInteraction(this.postId,this.authUser.id).subscribe(
+      (response) => {
+
+        this.interaction=response;
+        console.log(this.interaction)
+      },
+      (error) => {
+        console.error('Error fetching reclamation:', error);
+      }
+    );
+
+
   }
+
+  onLikePost() {
+      this.interactionService.likePost(this.postId,this.authUser.id).subscribe(
+        () => {
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/postdetails', this.postId]);
+          });
+          },
+        (error) => {
+          console.error('Error deleting reclamation:', error);
+        }
+      );
+  }
+
+  onDislike() {
+    this.interactionService.dislike(this.postId,this.authUser.id).subscribe(
+      () => {
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/postdetails', this.postId]);
+        });
+        },
+      (error) => {
+        console.error('Error deleting reclamation:', error);
+      }
+    );
+}
+
+
 
   onDeleteComment(id?: number) {
     if (id) {
