@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class SideBarComponent implements OnInit{
   constructor(private router: Router) {}
   authUser: any; // Declare authUser as a class property
-  userRole!: string;
+  userRole: string = '';
 
   ngOnInit() {
     // Retrieve the userId from sessionStorage when the component is initialized
